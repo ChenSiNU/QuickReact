@@ -1,7 +1,7 @@
 .course-list {
   display: grid;
-  margin-inline: 20px;
-  grid-template-columns: repeat(auto-fill, 25%);
-  /* justify-content: center;
-  align-content: center; */
+  justify-content: center;
+  align-content: center;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, 200px);
 }
