@@ -4,8 +4,7 @@ import Button from "react-bootstrap/Button";
 
 import React from "react";
 
-const CourseCard = (props) => {
-  const value = props.value;
+const CourseCard = ({ value }) => {
   return (
     <Card className="course-card">
       <Card.Body className="course-card-body-top">

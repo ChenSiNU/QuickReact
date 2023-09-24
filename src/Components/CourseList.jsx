@@ -2,13 +2,11 @@ import React from "react";
 import CourseCard from "./CourseCard";
 import "./CourseList.css";
 
-const CourseList = (props) => {
-  const courses = props.courses;
-
+const CourseList = ({ courses }) => {
   return (
     <div className="course-list">
       {Object.entries(courses).map(([key, value]) => (
-        <CourseCard value={value}></CourseCard>
+        <CourseCard value={value} />
       ))}
     </div>
   );
