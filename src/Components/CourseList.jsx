@@ -4,61 +4,68 @@ import TermCheckbox from "./TermCheckbox";
 import "./CourseList.css";
 
 const CourseList = ({ courses }) => {
-  const [displayedCourse, setDisplayedCourse] = useState([]);
-  const [displayFall, setDisplayedFall] = useState(true);
-  const [displayWinter, setDisplayedWinter] = useState(true);
-  const [displaySpring, setDisplayedSpring] = useState(true);
+	const [displayedCourse, setDisplayedCourse] = useState([]);
+	const [displayedTerm, setDisplayedTerm] = useState("Fall");
 
-  const handleChangeFall = () => {
-    setDisplayedFall(!displayFall);
-  };
-  const handleChangeWinter = () => {
-    setDisplayedWinter(!displayWinter);
-  };
-  const handleChangeSpring = () => {
-    setDisplayedSpring(!displaySpring);
-  };
+	const [selectedCourses, setSelectedCourses] = useState([]);
 
-  useEffect(() => {
-    const tempCourses = Object.entries(courses)
-      .filter(([key, value]) => {
-        const term = value.term;
-        if (term === "Fall") return displayFall;
-        else if (term === "Spring") return displaySpring;
-        else if (term === "Winter") return displayWinter;
-        return false;
-      })
-      .map(([key, value]) => value);
+	const handleTermChange = (term) => {
+		// setSelectedCourses([]);
+		setDisplayedTerm(term);
+	};
 
-    setDisplayedCourse(tempCourses);
-  }, [displaySpring, displayFall, displayWinter]);
+	const handleCourseOnClick = (courseInfo) => {
+		selectedCourses.includes(courseInfo)
+			? setSelectedCourses(
+					selectedCourses.filter((info) => info !== courseInfo)
+			  )
+			: setSelectedCourses([...selectedCourses, courseInfo]);
+	};
 
-  return (
-    <div>
-      <div className="term-checkbox">
-        <TermCheckbox
-          label="Fall"
-          checked={displayFall}
-          onChange={handleChangeFall}
-        />
-        <TermCheckbox
-          label="Winter"
-          checked={displayWinter}
-          onChange={handleChangeWinter}
-        />
-        <TermCheckbox
-          label="Spring"
-          checked={displaySpring}
-          onChange={handleChangeSpring}
-        />
-      </div>
-      <div className="course-list">
-        {displayedCourse.map((course) => {
-          return <CourseCard value={course} />;
-        })}
-      </div>
-    </div>
-  );
+	useEffect(() => {
+		const tempCourses = Object.entries(courses)
+			.filter(([key, value]) => value.term === displayedTerm)
+			.map(([key, value]) => value);
+
+		console.log(tempCourses);
+		setDisplayedCourse(tempCourses);
+	}, [displayedTerm]);
+
+	return (
+		<div>
+			<div className='term-checkbox'>
+				<TermCheckbox
+					label='Fall'
+					checked={displayedTerm === "Fall"}
+					onChange={handleTermChange}
+				/>
+				<TermCheckbox
+					label='Winter'
+					checked={displayedTerm === "Winter"}
+					onChange={handleTermChange}
+				/>
+				<TermCheckbox
+					label='Spring'
+					checked={displayedTerm === "Spring"}
+					onChange={handleTermChange}
+				/>
+			</div>
+			<div className='course-list'>
+				{displayedCourse.map((course) => {
+					return (
+						<CourseCard
+							key={`${course.term}${course.number}${course.title}`}
+							value={course}
+							initSelected={selectedCourses.includes(
+								`${course.term}${course.number}${course.title}`
+							)}
+							onClick={handleCourseOnClick}
+						/>
+					);
+				})}
+			</div>
+		</div>
+	);
 };
 
 export default CourseList;
