@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import Banner from "./components/Banner";
-import CourseList from "./components/CourseList";
+import Banner from "./Components/Banner";
+import CourseList from "./Components/CourseList";
 import "./App.css";
 
 const App = () => {
