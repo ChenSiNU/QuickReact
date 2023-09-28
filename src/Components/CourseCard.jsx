@@ -13,7 +13,8 @@ const CourseCard = ({ value, onClick, initSelected }) => {
 			selected={selected}
 			onClick={() => {
 				setSelected(!selected);
-				onClick(`${value.term}${value.number}${value.title}`);
+				// console.log(value);
+				onClick(value);
 			}}
 		>
 			<Card.Body className='course-card-body-top'>
