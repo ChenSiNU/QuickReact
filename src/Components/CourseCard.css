@@ -18,6 +18,17 @@
 	/* color: white; */
 }
 
+.course-card-conflicted {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid gray;
+	border-radius: 8px;
+	margin-inline: 5px;
+	height: 100%;
+	background-color: lightcoral;
+	/* color: white; */
+}
+
 .course-card-body-top {
 	display: flex;
 	flex-direction: column;

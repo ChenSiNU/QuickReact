@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import CourseCard from "./CourseCard";
 import TermCheckbox from "./TermCheckbox";
 import PopUp from "./PopUp";
+import { coursesEquals, getConflictedCourses } from "../Utils/CoursesUtil";
+
 import "./CourseList.css";
 
 const CourseList = ({ courses }) => {
@@ -9,6 +11,13 @@ const CourseList = ({ courses }) => {
 	const [displayedTerm, setDisplayedTerm] = useState("Fall");
 
 	const [selectedCourses, setSelectedCourses] = useState([]);
+	const selectedCoursesIncludes = (course) =>
+		selectedCourses.filter((c) => coursesEquals(c, course)).length !== 0;
+
+	const notSelectedCourses = courses.filter(
+		(course) => !selectedCoursesIncludes(course)
+	);
+	const [conflictedCourses, setConflictedCourses] = useState([]);
 
 	const [open, setOpen] = useState(false);
 
@@ -19,11 +28,8 @@ const CourseList = ({ courses }) => {
 		setDisplayedTerm(term);
 	};
 
-	const coursesEquals = (c1, c2) =>
-		c1.term === c2.term && c1.number === c2.number && c1.title === c2.title;
-
-	const selectedCoursesIncludes = (course) =>
-		selectedCourses.filter((c) => coursesEquals(c, course)).length !== 0;
+	const conflictedCoursesIncludes = (course) =>
+		conflictedCourses.filter((c) => coursesEquals(c, course)).length !== 0;
 
 	const handleCourseOnClick = (course) =>
 		selectedCoursesIncludes(course)
@@ -33,11 +39,19 @@ const CourseList = ({ courses }) => {
 			: setSelectedCourses([...selectedCourses, course]);
 
 	useEffect(() => {
-		const tempCourses = Object.entries(courses)
-			.filter(([key, value]) => value.term === displayedTerm)
-			.map(([key, value]) => value);
+		const tempCourses = courses.filter(
+			(course) => course.term === displayedTerm
+		);
 		setDisplayedCourse(tempCourses);
 	}, [displayedTerm]);
+
+	useEffect(() => {
+		const tempCourses = getConflictedCourses(
+			selectedCourses,
+			notSelectedCourses
+		);
+		setConflictedCourses(tempCourses);
+	}, [selectedCourses]);
 
 	return (
 		<div>
@@ -78,6 +92,7 @@ const CourseList = ({ courses }) => {
 							key={`${course.term}${course.number}${course.title}`}
 							value={course}
 							initSelected={selectedCoursesIncludes(course)}
+							conflicted={conflictedCoursesIncludes(course)}
 							onClick={handleCourseOnClick}
 						/>
 					);

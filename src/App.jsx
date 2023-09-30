@@ -27,7 +27,9 @@ const App = () => {
 	return (
 		<div className='App'>
 			<Banner title={schedule.title} />
-			<CourseList courses={schedule.courses} />
+			<CourseList
+				courses={Object.entries(schedule.courses).map(([key, value]) => value)}
+			/>
 		</div>
 	);
 };
