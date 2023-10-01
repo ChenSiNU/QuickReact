@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Banner from "./Components/Banner";
 import CourseList from "./Components/CourseList";
+import { parseStrToTime } from "./Utils/CoursesUtil";
 import "./App.css";
 
 const App = () => {
@@ -28,7 +29,12 @@ const App = () => {
 		<div className='App'>
 			<Banner title={schedule.title} />
 			<CourseList
-				courses={Object.entries(schedule.courses).map(([key, value]) => value)}
+				courses={Object.entries(schedule.courses)
+					.map(([key, value]) => value)
+					.map((course) => ({
+						...course,
+						meets: parseStrToTime(course.meets),
+					}))}
 			/>
 		</div>
 	);

@@ -22,7 +22,9 @@ const PopUp = ({ open, close, selectedCourses, displayedTerm }) => {
 							<div key={`${course.term}${course.number}${course.title}`}>
 								<div>CS {course.number}</div>
 								<div>{course.title}</div>
-								<div>{course.meets}</div>
+								<div>
+									<span>{`${course.meets.dates} ${course.meets.startHour}:${course.meets.startMin} ~ ${course.meets.endHour}:${course.meets.endMin}`}</span>
+								</div>
 								<hr></hr>
 							</div>
 						))

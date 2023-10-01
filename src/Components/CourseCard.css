@@ -5,6 +5,7 @@
 	border-radius: 8px;
 	margin-inline: 5px;
 	height: 100%;
+	cursor: pointer;
 }
 
 .course-card-selected {
@@ -15,7 +16,7 @@
 	margin-inline: 5px;
 	height: 100%;
 	background-color: lightblue;
-	/* color: white; */
+	cursor: pointer;
 }
 
 .course-card-conflicted {
@@ -53,4 +54,22 @@
 .course-card-title {
 	font-size: 16px;
 	text-align: left;
+}
+
+.open-edit-button {
+	font-size: 14px;
+	text-align: center;
+	position: relative;
+	left: 78%;
+	top: -97%;
+	z-index: 1;
+	width: 20px;
+	height: 20px;
+	padding: 4px;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.open-edit-button:hover {
+	background-color: lightgray;
 }

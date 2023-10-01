@@ -90,7 +90,7 @@ const CourseList = ({ courses }) => {
 					return (
 						<CourseCard
 							key={`${course.term}${course.number}${course.title}`}
-							value={course}
+							course={course}
 							initSelected={selectedCoursesIncludes(course)}
 							conflicted={conflictedCoursesIncludes(course)}
 							onClick={handleCourseOnClick}

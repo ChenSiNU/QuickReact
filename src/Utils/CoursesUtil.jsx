@@ -1,7 +1,7 @@
 export const coursesEquals = (c1, c2) =>
 	c1.term === c2.term && c1.number === c2.number && c1.title === c2.title;
 
-const parseStrToTime = (str) => {
+export const parseStrToTime = (str) => {
 	const [date, tStr] = str.split(" ");
 	const [sStr, eStr] = tStr.split("-");
 	const start = sStr.split(":");
@@ -10,22 +10,24 @@ const parseStrToTime = (str) => {
 	const regex = /[A-Z][a-z]*/g;
 
 	return {
-		date: date.match(regex),
-		start: parseInt(start[0]) * 60 + parseInt(start[1]),
-		end: parseInt(end[0]) * 60 + parseInt(end[1]),
+		dates: date.match(regex),
+		startHour: start[0],
+		startMin: start[1],
+		endHour: end[0],
+		endMin: end[1],
 	};
 };
 
-const compareTime = (s1, s2) => {
-	const t1 = parseStrToTime(s1);
-	const t2 = parseStrToTime(s2);
-
-	if (!t1.date.some((date) => t2.date.includes(date))) {
+const compareTime = (t1, t2) => {
+	if (!t1.dates.some((date) => t2.dates.includes(date))) {
 		return false;
 	}
+	const start1 = parseInt(t1.startHour) * 60 + parseInt(t1.startMin);
+	const end1 = parseInt(t1.endHour) * 60 + parseInt(t1.endMin);
+	const start2 = parseInt(t2.startHour) * 60 + parseInt(t2.startMin);
+	const end2 = parseInt(t2.endHour) * 60 + parseInt(t2.endMin);
 	return (
-		(t1.end >= t2.start && t2.start >= t1.start) ||
-		(t2.end >= t1.start && t1.start >= t2.start)
+		(end1 >= start2 && start2 >= start1) || (end2 >= start1 && start1 >= start2)
 	);
 };
 

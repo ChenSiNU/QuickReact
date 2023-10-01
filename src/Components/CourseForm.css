@@ -1,0 +1,66 @@
+.course-form-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.2);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 2;
+}
+
+.course-form-inner {
+	padding: 32px;
+	width: 100%;
+	max-width: 800px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.course-form {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	padding-inline: 80px;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+.course-form-input {
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	font-size: 18px;
+}
+
+.course-form-input-label {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.button-row {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.course-form-submit-button {
+	height: 40px;
+	border-radius: 5px;
+	font-size: 20px;
+	color: white;
+	width: 20%;
+	background-color: rgb(63, 98, 241);
+}
+
+.course-form-cancel-button {
+	height: 40px;
+	border-radius: 5px;
+	font-size: 20px;
+	margin-left: 30px;
+	width: 20%;
+}
