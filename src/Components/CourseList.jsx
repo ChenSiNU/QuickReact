@@ -3,10 +3,12 @@ import CourseCard from "./CourseCard";
 import TermCheckbox from "./TermCheckbox";
 import PopUp from "./PopUp";
 import { coursesEquals, getConflictedCourses } from "../Utils/CoursesUtil";
+import { useAuthState } from "../Utils/firebase";
 
 import "./CourseList.css";
 
 const CourseList = ({ courses }) => {
+	const [user] = useAuthState();
 	const [displayedCourse, setDisplayedCourse] = useState([]);
 	const [displayedTerm, setDisplayedTerm] = useState("Fall");
 
@@ -80,6 +82,7 @@ const CourseList = ({ courses }) => {
 						onChange={handleTermChange}
 					/>
 				</div>
+
 				<button className='popup-open-button' onClick={openModal}>
 					Schedule
 				</button>
