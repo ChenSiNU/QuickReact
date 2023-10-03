@@ -36,11 +36,31 @@
 	margin-bottom: 10px;
 	border-radius: 4px;
 	font-size: 18px;
+	border: solid 2px black;
+	outline: none;
+}
+
+.course-form-input-nonvalid {
+	height: 30px;
+	margin-top: 4px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	font-size: 18px;
+	border: solid 2px red;
+	outline: none;
+}
+
+.course-form-title-alert-message {
+	color: red;
 }
 
 .course-form-input-label {
 	font-size: 20px;
 	font-weight: bold;
+}
+
+.course-form-date-checkbox-wrapper {
+	margin-block: 5px;
 }
 
 .button-row {
@@ -55,6 +75,15 @@
 	color: white;
 	width: 20%;
 	background-color: rgb(63, 98, 241);
+}
+
+.course-form-submit-button-nonvalid {
+	height: 40px;
+	border-radius: 5px;
+	font-size: 20px;
+	color: white;
+	width: 20%;
+	background-color: rgb(235, 104, 104);
 }
 
 .course-form-cancel-button {

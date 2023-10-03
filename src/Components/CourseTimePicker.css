@@ -1,0 +1,8 @@
+.course-time-picker-wrapper {
+	display: flex;
+	/* justify-content: center; */
+}
+
+.course-time-picker-alert-message {
+	color: red;
+}

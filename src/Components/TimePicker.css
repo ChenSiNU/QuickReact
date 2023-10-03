@@ -1,0 +1,11 @@
+.time-picker-wrapper {
+	margin-right: 10px;
+}
+
+.time-picker-label {
+	margin-right: 5px;
+}
+.time-picker-label-nonvalid {
+	margin-right: 5px;
+	color: red;
+}
