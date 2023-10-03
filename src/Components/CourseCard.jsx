@@ -1,12 +1,13 @@
 import "./CourseCard.css";
 import Card from "react-bootstrap/Card";
 import CourseForm from "./CourseForm";
-import { useAuthState } from "../Utils/firebase";
+import { useProfile } from "../Utils/profile";
 
 import React, { useState } from "react";
 
 const CourseCard = ({ course, onClick, initSelected, conflicted }) => {
-	const [user] = useAuthState();
+	const [{ user, isAdmin }, loading, error] = useProfile();
+
 	const [selected, setSelected] = useState(initSelected);
 	const [open, setOpen] = useState(false);
 
@@ -48,7 +49,7 @@ const CourseCard = ({ course, onClick, initSelected, conflicted }) => {
 					</Card.Body>
 				</Card.Body>
 			</Card>
-			{user ? (
+			{isAdmin ? (
 				<div className='open-edit-button' onClick={openModal}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'

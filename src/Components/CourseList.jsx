@@ -4,11 +4,13 @@ import TermCheckbox from "./TermCheckbox";
 import PopUp from "./PopUp";
 import { coursesEquals, getConflictedCourses } from "../Utils/CoursesUtil";
 import { useAuthState } from "../Utils/firebase";
+import { useProfile } from "../Utils/profile";
 
 import "./CourseList.css";
 
 const CourseList = ({ courses }) => {
 	const [user] = useAuthState();
+	const [profile, loading, error] = useProfile();
 	const [displayedCourse, setDisplayedCourse] = useState([]);
 	const [displayedTerm, setDisplayedTerm] = useState("Fall");
 

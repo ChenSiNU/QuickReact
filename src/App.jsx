@@ -1,22 +1,18 @@
-import {
-	useDbData,
-	signInWithGoogle,
-	firebaseSignOut,
-	useAuthState,
-} from "./Utils/firebase";
+import { useDbData, signInWithGoogle, firebaseSignOut } from "./Utils/firebase";
 import Banner from "./Components/Banner";
 import CourseList from "./Components/CourseList";
 import { parseStrToTime } from "./Utils/CoursesUtil";
+import { useProfile } from "./Utils/profile";
 import "./App.css";
 
 const App = () => {
 	const [schedule, error] = useDbData("/");
-	const [user] = useAuthState();
+	const [{ user, isAdmin }, loading, e] = useProfile();
+
+	console.log(user);
 
 	if (error) return <h1>Error loading data: {error.toString()}</h1>;
-	if (!schedule) {
-		return <h1>Wait for Loading</h1>;
-	}
+	if (!schedule || loading) return <h1>Wait for Loading</h1>;
 
 	return (
 		<div className='App'>
@@ -28,19 +24,23 @@ const App = () => {
 					</button>
 				</div>
 			) : (
-				<button className='auth-button' onClick={signInWithGoogle}>
+				<button className='auth-button-sign-in' onClick={signInWithGoogle}>
 					Sign in
 				</button>
 			)}
 			<Banner title={schedule.title} />
-			<CourseList
-				courses={Object.entries(schedule.courses)
-					.map(([key, value]) => value)
-					.map((course) => ({
-						...course,
-						meets: parseStrToTime(course.meets),
-					}))}
-			/>
+			{user ? (
+				<CourseList
+					courses={Object.entries(schedule.courses)
+						.map(([key, value]) => value)
+						.map((course) => ({
+							...course,
+							meets: parseStrToTime(course.meets),
+						}))}
+				/>
+			) : (
+				""
+			)}
 		</div>
 	);
 };
