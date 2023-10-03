@@ -56,7 +56,14 @@ const CourseCard = ({ course, onClick, initSelected, conflicted }) => {
 				</svg>
 			</div>
 
-			<CourseForm open={open} cancel={closeModal} course={course}></CourseForm>
+			<CourseForm
+				open={open}
+				setOpen={setOpen}
+				cancel={closeModal}
+				course={course}
+				selected={selected}
+				setSelected={setSelected}
+			></CourseForm>
 		</div>
 	);
 };

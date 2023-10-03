@@ -7,7 +7,6 @@ import "./App.css";
 
 const App = () => {
 	const [schedule, error] = useDbData("/");
-	console.log(schedule);
 
 	if (error) return <h1>Error loading data: {error.toString()}</h1>;
 

@@ -63,6 +63,11 @@
 	margin-block: 5px;
 }
 
+.course-form-date-alert-message {
+	color: red;
+	margin-bottom: 5px;
+}
+
 .button-row {
 	text-align: center;
 	margin-top: 20px;

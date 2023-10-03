@@ -7,6 +7,10 @@ const CourseTimePicker = ({
 	startMin,
 	endHour,
 	endMin,
+	setStartHour,
+	setStartMin,
+	setEndHour,
+	setEndMin,
 	setValid,
 }) => {
 	const [sHour, setSHour] = useState(startHour);
@@ -23,6 +27,10 @@ const CourseTimePicker = ({
 	};
 
 	useEffect(() => {
+		setStartHour(sHour);
+		setStartMin(sMin);
+		setEndHour(eHour);
+		setEndMin(eMin);
 		const v = checkTimeValid(sHour, sMin, eHour, eMin);
 		setValidTime(v);
 		setValid(v);
