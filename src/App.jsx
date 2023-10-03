@@ -1,27 +1,17 @@
-import { useState, useEffect } from "react";
+import react from "react";
+import { useDbData } from "./Utils/firebase";
 import Banner from "./Components/Banner";
 import CourseList from "./Components/CourseList";
 import { parseStrToTime } from "./Utils/CoursesUtil";
 import "./App.css";
 
 const App = () => {
-	const [schedule, setSchedule] = useState({});
-	const fetchUrl =
-		"https://courses.cs.northwestern.edu/394/guides/data/cs-courses.php";
-	const [loading, setLoading] = useState(true);
+	const [schedule, error] = useDbData("/");
+	console.log(schedule);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await fetch(fetchUrl);
-			const data = await response.json();
-			setSchedule(data);
-			setLoading(false);
-		};
+	if (error) return <h1>Error loading data: {error.toString()}</h1>;
 
-		fetchData();
-	}, []);
-
-	if (loading) {
+	if (!schedule) {
 		return <h1>Wait for Loading</h1>;
 	}
 
