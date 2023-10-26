@@ -44,16 +44,20 @@ button {
 .auth-button {
 	border-radius: 5px;
 	font-size: 18px;
-	margin-top: 10px;
+	margin-block: 10px;
 	margin-left: 10px;
 }
 
 .auth-button-sign-in {
-	position: absolute;
+	/* position: absolute;
 	width: 200px;
 	height: 50px;
 	top: calc(50% - 25px);
 	left: calc(50% - 100px);
 	border-radius: 5px;
-	font-size: 30px;
+	font-size: 30px; */
+	border-radius: 5px;
+	font-size: 18px;
+	margin-block: 10px;
+	margin-left: 10px;
 }
