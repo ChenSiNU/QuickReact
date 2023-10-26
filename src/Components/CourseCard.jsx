@@ -35,8 +35,8 @@ const CourseCard = ({ course, onClick, initSelected, conflicted }) => {
 				}
 			>
 				<Card.Body className='course-card-body-top'>
-					<Card.Title className='course-card-number'>
-						{"CS " + course.number}
+					<Card.Title className='course-card-number' data-cy='course'>
+						{course.term + " CS " + course.number}
 					</Card.Title>
 
 					<Card.Text className='course-card-title'>{course.title}</Card.Text>
