@@ -77,6 +77,7 @@ const CourseList = ({ courses }) => {
 						label='Winter'
 						checked={displayedTerm === "Winter"}
 						onChange={handleTermChange}
+						data-cy='Winter'
 					/>
 					<TermCheckbox
 						label='Spring'

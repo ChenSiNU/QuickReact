@@ -7,6 +7,7 @@ const TermCheckbox = ({ label, checked, onChange }) => {
 				type='checkbox'
 				checked={checked}
 				onChange={() => onChange(label)}
+				data-cy={label}
 			/>
 			{label}
 		</label>
