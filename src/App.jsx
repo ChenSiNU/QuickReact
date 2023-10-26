@@ -16,30 +16,26 @@ const App = () => {
 
 	return (
 		<div className='App'>
+			<Banner title={schedule.title} />
 			{user ? (
 				<div>
 					{user.email}
 					<button className='auth-button' onClick={firebaseSignOut}>
 						Sign out
 					</button>
+					<CourseList
+						courses={Object.entries(schedule.courses)
+							.map(([key, value]) => value)
+							.map((course) => ({
+								...course,
+								meets: parseStrToTime(course.meets),
+							}))}
+					/>
 				</div>
 			) : (
 				<button className='auth-button-sign-in' onClick={signInWithGoogle}>
 					Sign in
 				</button>
-			)}
-			<Banner title={schedule.title} />
-			{user ? (
-				<CourseList
-					courses={Object.entries(schedule.courses)
-						.map(([key, value]) => value)
-						.map((course) => ({
-							...course,
-							meets: parseStrToTime(course.meets),
-						}))}
-				/>
-			) : (
-				""
 			)}
 		</div>
 	);
